@@ -6,7 +6,11 @@ class UltrasonicReading < ApplicationRecord
 
   private
     def check_parking_spot
-      return if reading <=80
-      parking_spot.status=ParkingSpot.statuses[:occupied]
+      if reading >80
+        parking_spot.status=ParkingSpot.statuses[:occupied]
+      else
+        parking_spot.status=ParkingSpot.statuses[:vacant]
+      end
+        parking_spot.save!
     end
 end
