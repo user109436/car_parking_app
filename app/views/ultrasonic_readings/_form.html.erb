@@ -1,0 +1,27 @@
+<%= form_with(model: ultrasonic_reading, class: "contents") do |form| %>
+  <% if ultrasonic_reading.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(ultrasonic_reading.errors.count, "error") %> prohibited this ultrasonic_reading from being saved:</h2>
+
+      <ul>
+        <% ultrasonic_reading.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :parking_spot_id %>
+    <%= form.text_field :parking_spot_id, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="my-5">
+    <%= form.label :reading %>
+    <%= form.text_field :reading, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>

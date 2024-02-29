@@ -1,0 +1,2 @@
+module UltrasonicReadingsHelper
+end

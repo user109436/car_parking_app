@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parking_location: one
+  name: MyString
+  status: MyString
+  max_distance: 9.99
+
+two:
+  parking_location: two
+  name: MyString
+  status: MyString
+  max_distance: 9.99
