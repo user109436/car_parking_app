@@ -13,6 +13,7 @@ class ParkingSpotsController < ApplicationController
   # GET /parking_spots/new
   def new
     @parking_spot = ParkingSpot.new
+    @parking_spot.parking_location_id = params[:parking_location_id]
   end
 
   # GET /parking_spots/1/edit

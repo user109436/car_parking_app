@@ -8,6 +8,12 @@
       <%=link_to parking_location.street, parking_location, class:"hover:underline"%>
     </p>
 </div>
+    <p class="py-2 px-3 text-sm my-4">
+      Parking Spots:<%= parking_location.parking_spots.count%>
+    </p>
+    <p class="py-2 px-3 text-sm my-4">
+      Available:<%= parking_location.parking_spots.where(status:ParkingSpot.statuses[:vacant]).count%>
+    </p>
 
   <% if action_name != "show" %>
     <%= link_to "Edit this parking location", edit_parking_location_path(parking_location), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>

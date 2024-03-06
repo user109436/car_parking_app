@@ -1,6 +1,8 @@
 class UltrasonicReadingsController < ApplicationController
   before_action :set_ultrasonic_reading, only: %i[ show edit update destroy ]
 
+  skip_before_action :verify_authenticity_token, only: [:create ]
+
   # GET /ultrasonic_readings or /ultrasonic_readings.json
   def index
     @ultrasonic_readings = UltrasonicReading.all
