@@ -1,24 +1,22 @@
-# README
+### Intro to Rails 7 with Car Parking Web App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
 
-Things you may want to cover:
 
-* Ruby version
+```sh
+git clone https://github.com/user109436/car_parking_app.git
 
-* System dependencies
+# install dependencies
+bundle
 
-* Configuration
+# create database
+rails db:migrate
 
-* Database creation
+# create dummy data
+rails db:seed
 
-* Database initialization
+#run the program method 1
+./bin/dev
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#run the program method 2
+rails s
+```

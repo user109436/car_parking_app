@@ -6,7 +6,7 @@ class UltrasonicReading < ApplicationRecord
 
   private
     def check_parking_spot
-      if reading >=parking_spot.max_distance
+      if reading <=parking_spot.max_distance
         parking_spot.status=ParkingSpot.statuses[:occupied]
       else
         parking_spot.status=ParkingSpot.statuses[:vacant]
