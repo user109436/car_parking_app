@@ -18,5 +18,11 @@ module CarParkingApp
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.generators.system_test do |g|
+      g.test_framework(
+        :rspec,
+        :fixtures
+      )
+    end
   end
 end

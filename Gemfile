@@ -75,3 +75,7 @@ group :test do
 end
 
 gem "faker", "~> 3.2"
+
+gem "byebug", "~> 11.1", :groups => [:development, :test]
+
+gem "rspec-rails", "~> 6.1", :group => [:development, :test]
