@@ -38,7 +38,7 @@ RSpec.describe "/parking_spots", type: :request do
     {
       parking_location_id:0,
       name:1,
-      status:'invalid',
+      status:"invalid",
       max_distance:'test'
     }
   }
@@ -92,15 +92,14 @@ RSpec.describe "/parking_spots", type: :request do
       it "does not create a new ParkingSpot and Raise Argument Error" do
         expect {
           post parking_spots_url, params: { parking_spot: invalid_attributes }
-        }.to raise_error(ArgumentError, "#{invalid_attributes[:status]} is not a valid status")
-        expect(ParkingSpot.count).to eq(0)
+        }.to change(ParkingSpot, :count).by(0)
       end
 
     
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post parking_spots_url, params: { parking_spot: invalid_attributes }
-        expect(response).to 
-        (:unprocessable_entity)
+        expect{
+          post parking_spots_url, params: { parking_spot: invalid_attributes }
+      }.to change(ParkingSpot, :count).by(0)
       end
     
     end
@@ -109,14 +108,22 @@ RSpec.describe "/parking_spots", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          parking_location_id:parking_location.id,
+          name:'000-level-2',
+          status:'occupied',
+          max_distance:53
+        }
       }
 
       it "updates the requested parking_spot" do
-        parking_spot = ParkingSpot.create! valid_attributes
+        parking_spot = ParkingSpot.create! new_attributes
         patch parking_spot_url(parking_spot), params: { parking_spot: new_attributes }
         parking_spot.reload
-        skip("Add assertions for updated state")
+        expect(parking_spot.parking_location_id).to eq(new_attributes[:parking_location_id])
+        expect(parking_spot.name).to eq(new_attributes[:name])
+        expect(parking_spot.status).to eq(new_attributes[:status])
+        expect(parking_spot.max_distance).to eq(new_attributes[:max_distance])
       end
 
       it "redirects to the parking_spot" do

@@ -1,5 +1,9 @@
+<% if alert.present? %>
+    <p class="py-2 px-3 bg-red-50 mb-5 text-red-500 font-medium rounded-lg inline-block" id="aler"><%= alert%></p>
+  <% end %>
+
 <%= form_with(model: parking_spot, class: "contents") do |form| %>
-  <% if parking_spot.errors.any? %>
+  <% if parking_spot&.errors&.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(parking_spot.errors.count, "error") %> prohibited this parking_spot from being saved:</h2>
 

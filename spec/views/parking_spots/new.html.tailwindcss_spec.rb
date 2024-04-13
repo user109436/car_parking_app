@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe "parking_spots/new", type: :view do
   before(:each) do
     assign(:parking_spot, ParkingSpot.new(
-      parking_location: nil,
+      parking_location_id: nil,
       name: "MyString",
-      status: "MyString",
+      status: "vacant",
       max_distance: "9.99"
     ))
   end
@@ -19,7 +19,7 @@ RSpec.describe "parking_spots/new", type: :view do
 
       assert_select "input[name=?]", "parking_spot[name]"
 
-      assert_select "input[name=?]", "parking_spot[status]"
+      assert_select "select[name=?]", "parking_spot[status]"
 
       assert_select "input[name=?]", "parking_spot[max_distance]"
     end

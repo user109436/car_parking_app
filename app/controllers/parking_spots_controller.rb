@@ -1,5 +1,6 @@
 class ParkingSpotsController < ApplicationController
   before_action :set_parking_spot, only: %i[ show edit update destroy ]
+  rescue_from ArgumentError, with: :invalid_argument_error
 
   # GET /parking_spots or /parking_spots.json
   def index
@@ -67,5 +68,12 @@ class ParkingSpotsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def parking_spot_params
       params.require(:parking_spot).permit(:parking_location_id, :name, :status, :max_distance)
+    end
+
+    def invalid_argument_error(exceptions)
+      flash[:alert] =  exceptions.message
+      flash[:notice] =  exceptions.message
+      action = params[:action] == "create" ? :new : :edit
+      redirect_to action: action, status: :unprocessable_entity
     end
 end

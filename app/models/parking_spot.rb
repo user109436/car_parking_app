@@ -5,6 +5,8 @@ class ParkingSpot < ApplicationRecord
 
   enum status:{
     occupied:'occupied',
-    vacant:''
+    vacant:'vacant'
   }
+
+  validates :status, inclusion:{in:statuses.keys, message: "%{value} is not a valid status"}
 end
